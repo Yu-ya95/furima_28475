@@ -25,7 +25,7 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | name               | string     | null: false                    |
-| product_text       | text       | null: false                    |
+| item_text          | text       | null: false                    |
 | category_code      | integer    | null: false                    |
 | status_code        | integer    | null: false                    |
 | postage_code       | integer    | null: false                    |
