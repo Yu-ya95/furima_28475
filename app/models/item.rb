@@ -11,7 +11,7 @@ class Item < ApplicationRecord
 
   validates :name, :item_text, :image, presence: true
 
-  validates :price, :numericality => { :greater_than_or_equal_to => 300, :less_than => 10000000, message: 'Out of setting range, Half-width number'}
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000, message: 'Out of setting range, Half-width number' }
 
-  validates :category_code, :status_code, :postage_code, :prefecture_code, :delivery_days_code, numericality: { other_than: 1 , message: 'Select'}
+  validates :category_code, :status_code, :postage_code, :prefecture_code, :delivery_days_code, numericality: { other_than: 1, message: 'Select' }
 end

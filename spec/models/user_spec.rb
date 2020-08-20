@@ -8,7 +8,6 @@ RSpec.describe User, type: :model do
 
     describe 'ユーザー新規登録' do
       context '新規登録がうまくいくとき' do
-        
         it 'nickname、email、password、password_confirmation、last_name、first_name、last_name_kana、first_name_kana、birthdayが存在すれば登録できる' do
           expect(@user).to be_valid
         end
@@ -41,7 +40,6 @@ RSpec.describe User, type: :model do
       end
 
       context '新規登録がうまくいかないとき' do
-        
         it 'nicknameが空では登録できない' do
           @user.nickname = nil
           @user.valid?
@@ -134,7 +132,7 @@ RSpec.describe User, type: :model do
         it 'emailに@が含まれていなければ登録できない' do
           @user.email = 'abcde.com'
           @user.valid?
-          expect(@user.errors.full_messages).to include("Email is invalid")
+          expect(@user.errors.full_messages).to include('Email is invalid')
         end
 
         it 'last_nameが全角(漢字・ひらがな・カタカナ)以外であれば登録できない' do
