@@ -9,32 +9,32 @@ RSpec.describe Item, type: :model do
 
     describe '商品出品機能' do
       context '出品がうまくいくとき' do
-        it 'name、item_text、category_code、status_code、postage_code、prefecture_code、delivery_days_code、priceが存在すれば登録できる' do
+        it 'name、item_text、category_id、status_id、postage_id、prefecture_id、shipping_id、priceが存在すれば登録できる' do
           expect(@item).to be_valid
         end
 
-        it 'category_codeの値が2~11であれば登録できる' do
-          @item.category_code = 10
+        it 'category_idの値が2~11であれば登録できる' do
+          @item.category_id = 10
           expect(@item).to be_valid
         end
 
-        it 'status_codeの値が2~7であれば登録できる' do
-          @item.status_code = 6
+        it 'status_idの値が2~7であれば登録できる' do
+          @item.status_id = 6
           expect(@item).to be_valid
         end
 
-        it 'postage_codeの値が2~3であれば登録できる' do
-          @item.postage_code = 2
+        it 'postage_idの値が2~3であれば登録できる' do
+          @item.postage_id = 2
           expect(@item).to be_valid
         end
 
-        it 'prefecture_codeの値が2~48であれば登録できる' do
-          @item.prefecture_code = 47
+        it 'prefecture_idの値が2~48であれば登録できる' do
+          @item.prefecture_id = 47
           expect(@item).to be_valid
         end
 
-        it 'delivery_days_codeの値が2~4であれば登録できる' do
-          @item.delivery_days_code = 3
+        it 'shipping_idの値が2~4であれば登録できる' do
+          @item.shipping_id = 3
           expect(@item).to be_valid
         end
 
@@ -63,34 +63,34 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Item text can't be blank")
         end
 
-        it 'category_codeが1では登録できない' do
-          @item.category_code = 1
+        it 'category_idが1では登録できない' do
+          @item.category_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Category code Select')
+          expect(@item.errors.full_messages).to include('Category id Select')
         end
 
-        it 'status_codeが1では登録できない' do
-          @item.status_code = 1
+        it 'status_idが1では登録できない' do
+          @item.status_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Status code Select')
+          expect(@item.errors.full_messages).to include('Status id Select')
         end
 
-        it 'postage_codeが1では登録できない' do
-          @item.postage_code = 1
+        it 'postage_idが1では登録できない' do
+          @item.postage_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Postage code Select')
+          expect(@item.errors.full_messages).to include('Postage id Select')
         end
 
-        it 'prefecture_codeが1では登録できない' do
-          @item.prefecture_code = 1
+        it 'prefecture_idが1では登録できない' do
+          @item.prefecture_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Prefecture code Select')
+          expect(@item.errors.full_messages).to include('Prefecture id Select')
         end
 
-        it 'delivery_days_codeが1では登録できない' do
-          @item.delivery_days_code = 1
+        it 'shipping_idが1では登録できない' do
+          @item.shipping_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include('Delivery days code Select')
+          expect(@item.errors.full_messages).to include('Shipping id Select')
         end
 
         it 'priceが空では登録できない' do
