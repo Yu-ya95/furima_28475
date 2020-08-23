@@ -3,11 +3,11 @@ class CreateItems < ActiveRecord::Migration[6.0]
     create_table :items do |t|
       t.string :name
       t.text :item_text, null: false
-      t.integer :category_code, null: false
-      t.integer :status_code, null: false
-      t.integer :postage_code, null: false
-      t.integer :prefecture_code, null: false
-      t.integer :delivery_days_code, null: false
+      t.integer :category_id, null: false
+      t.integer :status_id, null: false
+      t.integer :postage_id, null: false
+      t.integer :prefecture_id, null: false
+      t.integer :shipping_id, null: false
       t.integer :price, null: false
       t.references :user, foreign_key: true
       t.timestamps
