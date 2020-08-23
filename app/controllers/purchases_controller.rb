@@ -1,6 +1,10 @@
 class PurchasesController < ApplicationController
   def index
-    @item = Item.find(params[:format])
+    if user_signed_in?
+      @item = Item.find(params[:format])
+    else
+      redirect_to '/users/sign_in'
+    end
   end
 
   def create
