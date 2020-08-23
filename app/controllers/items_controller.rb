@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :show]
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :user_judge, only: [:edit, :destroy]
   def index
     @items = Item.all.order(id: 'DESC')
   end
@@ -13,9 +14,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user_id
-      redirect_to '/'
-    end
   end
 
   def update
@@ -39,6 +37,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to '/'
+  end
+
   private
 
   def item_params
@@ -47,5 +50,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def user_judge
+  unless current_user.id == @item.user_id
+    redirect_to '/' 
   end
 end
