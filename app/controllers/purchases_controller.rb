@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   def index
     if user_signed_in?
       @item = Item.find(params[:format])
-      if current_user.id == @item.user_id
+      if (current_user.id == @item.user_id) || @item.purchase
         redirect_to '/' 
       end
     else
