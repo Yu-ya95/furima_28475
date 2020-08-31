@@ -15,7 +15,6 @@ const pay = () => {
 
     Payjp.createToken(card, (status, response) => {
       if (status === 200) {
-        console.log("OK")
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} type="hidden" name='purchase_information[token]'>`;
@@ -29,7 +28,6 @@ const pay = () => {
         document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
       } else {
-        console.log("NG")
         document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
       }

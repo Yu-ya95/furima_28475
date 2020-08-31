@@ -1,7 +1,8 @@
 class PurchasesController < ApplicationController
+  before_action :set_item, only: [:index, :create]
+
   def index
     if user_signed_in?
-      @item = Item.find(params[:item_id])
       redirect_to '/' if (current_user.id == @item.user_id) || @item.purchase
     else
       redirect_to '/users/sign_in'
@@ -10,7 +11,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase = PurchaseInformation.new(purchase_params)
     if @purchase.valid?
       pay_item
@@ -23,10 +23,6 @@ class PurchasesController < ApplicationController
 
   private
 
-  # def order_params
-  #   params.permit(:token)
-  # end
-
   def purchase_params
     params.require(:purchase_information).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number, :token).merge(user_id: current_user.id, item_id: @item.id, price: @item.price)
   end
@@ -38,5 +34,9 @@ class PurchasesController < ApplicationController
       card: purchase_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
