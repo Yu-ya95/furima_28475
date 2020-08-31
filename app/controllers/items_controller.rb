@@ -53,8 +53,6 @@ class ItemsController < ApplicationController
   end
 
   def user_judge
-    unless current_user.id == @item.user_id
-      redirect_to '/' 
-    end
+    redirect_to '/' unless current_user.id == @item.user_id
   end
 end
